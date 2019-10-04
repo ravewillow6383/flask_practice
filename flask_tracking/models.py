@@ -13,4 +13,4 @@ class Site(db.Model):
         return '<Site {:d} {}>'.format(self.id, self.base_url)
 
     def __str__(self):
-        
+        return self.base_url

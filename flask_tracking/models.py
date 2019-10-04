@@ -14,3 +14,18 @@ class Site(db.Model):
 
     def __str__(self):
         return self.base_url
+
+class Visit(db.Model):
+    __tablename__ = 'tracking_visit'
+
+    id = db.Column(db.integer, primary_key=True)
+    browser = db.Column(db.String)
+    date = db.Column(db.DateTime)
+    event = db.column(db.String)
+    url = db.Column(db.String)
+    ip_address = db.Column(db.String)
+    site_id = db.Column(db.Integer, db.ForeignKey('tracking_site.id'))
+
+    def __repr__(self):
+        r = '<Visit for site ID {:d}: {} - {:%Y-%m-%d %H:%M:%S}>'
+        return r.format(self.site_id, self.url, self.date)
